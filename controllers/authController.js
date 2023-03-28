@@ -1,5 +1,7 @@
 const bcrypt = require('bcryptjs');
+const { query } = require('express');
 const { Pool } = require('pg');
+const queries = require("../queries");
 
 const pool = new Pool({
   user: process.env.PGUSER,
@@ -17,7 +19,7 @@ const register = async (req, res) => {
     const { email, password } = req.body;
 
     // Check if user with this email already exists
-    const user = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
+    const user = await pool.query(queries.checkUserEmail, [email]);
 
     if (user.rows.length) {
       return res.status(400).json({ message: 'User with this email already exists' });
@@ -29,7 +31,7 @@ const register = async (req, res) => {
 
     // Insert new user into the database
     const newUser = await pool.query(
-      'INSERT INTO users (email, password) VALUES ($1, $2) RETURNING *',
+      queries.addNewUserData,
       [email, hashedPassword]
     );
 
@@ -45,7 +47,7 @@ const login = async (req, res) => {
     const { email, password } = req.body;
 
     // Check if user with this email exists
-    const user = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
+    const user = await pool.query(query.checkUserEmail, [email]);
 
     if (!user.rows.length) {
       return res.status(400).json({ message: 'Invalid credentials' });
