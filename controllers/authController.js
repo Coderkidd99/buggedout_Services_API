@@ -1,18 +1,8 @@
 const bcrypt = require('bcryptjs');
 const { query } = require('express');
-const { Pool } = require('pg');
+const pool = require("../db");
 const queries = require("../queries");
 
-const pool = new Pool({
-  user: process.env.PGUSER,
-  password: process.env.PGPASSWORD,
-  host: process.env.PGHOST,
-  port: process.env.PGPORT,
-  database: process.env.PGDATABASE,
-  ssl: {
-      rejectUnauthorized: false
-    }
-});
 
 const register = async (req, res) => {
   try {
