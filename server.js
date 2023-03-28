@@ -11,7 +11,6 @@ app.use(express.json());
 
 // Routes
 app.use('/users', require('./authRoutes'));
-
 app.use('/tasks', require('./routes'));
 
 app.get('/', (req, res) => {
