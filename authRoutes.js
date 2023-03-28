@@ -5,9 +5,9 @@ const router = Router();
 
 //users
 router.get('/', (req, res) => {
-    res.send('This is the users endpoint');
+    res.send('This is the /users endpoint');
   });
-  
+
 router.post('/register', authController.register);
 router.post('/login', authController.login);
 
