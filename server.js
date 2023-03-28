@@ -10,7 +10,7 @@ app.use(express.json());
 
 
 // Routes
-app.use('/users', require('./routes/authRoutes'));
+app.use('/users', require('./routes'));
 
 app.use('/tasks', require('./routes'));
 
