@@ -1,7 +1,8 @@
 const { parse } = require("dotenv");
 const pool = require("../db");
 const queries = require("../queries");
-import moment from "moment/moment";
+
+
 const errorHandler = (error, res) => {
   console.error(error);
   res.status(500).send("Server Error");
@@ -39,7 +40,6 @@ const addUserData = async (req, res) => {
     iscompleted,
   } = req.body;
 
-  const parsedDate = moment(duedate, 'YYYY-MM-DD').toDate();
 
   try {
     const checkResults = await pool.query(queries.checkUserIdExists, [userid]);
@@ -50,7 +50,7 @@ const addUserData = async (req, res) => {
       queries.addUserData,
       [
         userid,
-        parsedDate,
+        duedate,
         assignto,
         taskrole,
         taskname,
