@@ -39,6 +39,8 @@ const addUserData = async (req, res) => {
     iscompleted,
   } = req.body;
 
+  const parsedDate = moment(duedate, 'YYYY-MM-DD').toDate();
+
   try {
     const checkResults = await pool.query(queries.checkUserIdExists, [userid]);
     if (checkResults.rows.length) {
@@ -48,7 +50,7 @@ const addUserData = async (req, res) => {
       queries.addUserData,
       [
         userid,
-        duedate,
+        parsedDate,
         assignto,
         taskrole,
         taskname,
