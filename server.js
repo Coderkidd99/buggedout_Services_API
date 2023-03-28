@@ -8,8 +8,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-//add login/register info here
 
+// Routes
+app.use('/auth', require('./routes/authRoutes'));
 
 app.use('/tasks', require('./routes'));
 
