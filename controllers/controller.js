@@ -60,6 +60,10 @@ const addUserData = async (req, res) => {
         iscompleted,
       ]
     );
+    
+    console.log("req.body:", req.body);
+    console.log("addResults:", addResults);
+    
     res.status(201).send(`Task added with ID: ${addResults.rows[0].id}`);
   } catch (error) {
     errorHandler(error, res);
@@ -77,7 +81,7 @@ const updateUserData = async (req, res) => {
     description,
     notes,
     priority,
-    iscompleted,
+    iscompleted
   } = req.body;
 
   try {
