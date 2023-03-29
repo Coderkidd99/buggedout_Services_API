@@ -17,12 +17,10 @@ app.use((req, res, next) => {
 app.use(express.json());
 
 
-// Routes
-app.use('/api/users', require('./authRoutes'));
 app.use('/api/tasks', require('./routes'));
 
 app.get('/', (req, res) => {
-  res.send('Hello from homepage!');
+  res.send('Hello from API Index Page!, Are you Lost?');
 });
 
 module.exports = app;
