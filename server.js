@@ -17,7 +17,7 @@ app.use((req, res, next) => {
 app.use(express.json());
 
 
-app.use('/tasks', require('./routes'));
+app.use('/api/tasks', require('./routes'));
 
 app.get('/', (req, res) => {
   res.send('Hello from API Index Page!, Are you Lost?');
